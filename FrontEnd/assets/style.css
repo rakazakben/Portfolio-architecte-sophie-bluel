@@ -61,7 +61,21 @@ header {
 section {
 	margin: 50px 90px
 }
-
+.btn-filtre{
+	display: flex;
+	justify-content: center;
+	gap: 15px;
+	margin-bottom: 50px;
+}
+.btn-filtre button {
+	background-color: white;
+	font-size: 18px;
+	font-family: 'Syne';
+	color: #1D6154;
+	border: 1px solid #1D6154;
+	border-radius: 60px;
+	padding: 5px 10px 5px 10px;
+}
 h1{
 	display: flex;
 	flex-direction: column;
