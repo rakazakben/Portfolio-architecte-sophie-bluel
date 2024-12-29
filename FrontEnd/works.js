@@ -21,3 +21,58 @@ function genererWorks(works){
     }
 }
 genererWorks(works);
+
+//système de tri :
+
+const btnTous = document.querySelector(".btn-tous");
+const btnObjet = document.querySelector(".btn-objet");
+const btnAppart = document.querySelector(".btn-appart");
+const btnResto = document.querySelector(".btn-resto")
+
+btnTous.addEventListener("click", function(){
+    btnTous.classList.add("filtre-actif");
+    btnObjet.classList.remove("filtre-actif");
+    btnAppart.classList.remove("filtre-actif");
+    btnResto.classList.remove("filtre-actif");
+    document.querySelector(".gallery").innerHTML = "";
+    genererWorks(works);
+});
+
+btnObjet.addEventListener("click", function(){
+    btnObjet.classList.add("filtre-actif");
+    btnTous.classList.remove("filtre-actif");
+    btnAppart.classList.remove("filtre-actif");
+    btnResto.classList.remove("filtre-actif");
+    document.querySelector(".gallery").innerHTML = "";
+    const worksFiltre = works.filter(function(works){
+        return works.category.id === 1;
+    });
+    genererWorks(worksFiltre);
+    
+
+});
+
+btnAppart.addEventListener("click", function(){
+    btnAppart.classList.add("filtre-actif");
+    btnTous.classList.remove("filtre-actif");
+    btnObjet.classList.remove("filtre-actif");
+    btnResto.classList.remove("filtre-actif");
+    document.querySelector(".gallery").innerHTML = "";
+    const worksFiltre = works.filter(function(works){
+        return works.category.id === 2;
+    });
+    genererWorks(worksFiltre);
+});
+
+btnResto.addEventListener("click", function(){
+    btnResto.classList.add("filtre-actif");
+    btnTous.classList.remove("filtre-actif");
+    btnObjet.classList.remove("filtre-actif");
+    btnAppart.classList.remove("filtre-actif");
+    document.querySelector(".gallery").innerHTML = "";
+    const worksFiltre = works.filter(function(works){
+        return works.category.id === 3;
+    });
+    genererWorks(worksFiltre);
+});
+

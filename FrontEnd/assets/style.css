@@ -76,6 +76,10 @@ section {
 	border-radius: 60px;
 	padding: 5px 10px 5px 10px;
 }
+.btn-filtre .filtre-actif{
+	background-color: #1D6154;
+	color: white;
+}
 h1{
 	display: flex;
 	flex-direction: column;
