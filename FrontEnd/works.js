@@ -30,6 +30,7 @@ function genererFiltres(categories){
     const btnTous = document.createElement("button");
     btnTous.innerText = "Tous";
     btnTous.classList.add("btn-tous");
+    btnTous.classList.add("filtre-actif");
     //on créé le bouton "Tous" qui sera toujours présent 
     divFiltres.appendChild(btnTous);
     for(let i =0 ; i < categories.length; i++){
@@ -74,42 +75,3 @@ for(let i =1; i< btnCategorie.length; i++){
     genererWorks(worksFiltre);
     });
 }
-
-/*btnObjet.addEventListener("click", function(){
-    btnObjet.classList.add("filtre-actif");
-    btnTous.classList.remove("filtre-actif");
-    btnAppart.classList.remove("filtre-actif");
-    btnResto.classList.remove("filtre-actif");
-    document.querySelector(".gallery").innerHTML = "";
-    const worksFiltre = works.filter(function(works){
-        return works.category.id === 1;
-    });
-    genererWorks(worksFiltre);
-    
-
-});
-
-btnAppart.addEventListener("click", function(){
-    btnAppart.classList.add("filtre-actif");
-    btnTous.classList.remove("filtre-actif");
-    btnObjet.classList.remove("filtre-actif");
-    btnResto.classList.remove("filtre-actif");
-    document.querySelector(".gallery").innerHTML = "";
-    const worksFiltre = works.filter(function(works){
-        return works.category.id === 2;
-    });
-    genererWorks(worksFiltre);
-});
-
-btnResto.addEventListener("click", function(){
-    btnResto.classList.add("filtre-actif");
-    btnTous.classList.remove("filtre-actif");
-    btnObjet.classList.remove("filtre-actif");
-    btnAppart.classList.remove("filtre-actif");
-    document.querySelector(".gallery").innerHTML = "";
-    const worksFiltre = works.filter(function(works){
-        return works.category.id === 3;
-    });
-    genererWorks(worksFiltre);
-});
-*/
