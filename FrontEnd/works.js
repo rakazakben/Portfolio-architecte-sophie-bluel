@@ -23,20 +23,21 @@ function genererWorks(works){
     }
 }
 genererWorks(works);
-
+//génération des filtres en fonction des catégories sur l'api
 function genererFiltres(categories){
+    //on se place dans la div filtre
     const divFiltres = document.querySelector(".btn-filtre");
     const btnTous = document.createElement("button");
     btnTous.innerText = "Tous";
     btnTous.classList.add("btn-tous");
+    //on créé le bouton "Tous" qui sera toujours présent 
     divFiltres.appendChild(btnTous);
     for(let i =0 ; i < categories.length; i++){
         const categorie = categories[i];
         
         const btnFiltre = document.createElement("button");
         btnFiltre.innerText = categorie.name;
-        btnFiltre.classList.add("btn"+categorie.id);
-
+        //on créé tous les boutons de catégorie dans la div filtres
         divFiltres.appendChild(btnFiltre);
     }
 }
@@ -47,7 +48,7 @@ genererFiltres(categories);
 
 const btnTous = document.querySelector(".btn-tous");
 const btnCategorie = document.querySelectorAll(".btn-filtre button");
-
+//affichage de tous les works lors du clic sur le bouton "Tous"
 btnTous.addEventListener("click",async function(){
     console.log("bouton clické");
     for(let j=0; j< btnCategorie.length;j++){
@@ -58,7 +59,7 @@ btnTous.addEventListener("click",async function(){
     genererWorks(works);
 });
 
-
+//tri en fonction des id des catégories
 for(let i =1; i< btnCategorie.length; i++){
     btnCategorie[i].addEventListener("click", async function(){
         for(let j=0; j< btnCategorie.length;j++){
