@@ -52,9 +52,11 @@ const btnCategorie = document.querySelectorAll(".btn-filtre button");
 //affichage de tous les works lors du clic sur le bouton "Tous"
 btnTous.addEventListener("click",async function(){
     console.log("bouton clické");
+    //lors du click sur un des bouton on rend tous les filtres inactifs
     for(let j=0; j< btnCategorie.length;j++){
         btnCategorie[j].classList.remove("filtre-actif");
     }
+    //on rend le bouton "Tous" actif
     btnTous.classList.add("filtre-actif");
     document.querySelector(".gallery").innerHTML = "";
     genererWorks(works);
@@ -63,15 +65,17 @@ btnTous.addEventListener("click",async function(){
 //tri en fonction des id des catégories
 for(let i =1; i< btnCategorie.length; i++){
     btnCategorie[i].addEventListener("click", async function(){
+        //lors du click sur un des bouton on rend tous les filtres inactifs
         for(let j=0; j< btnCategorie.length;j++){
             btnCategorie[j].classList.remove("filtre-actif");
         }
-        
+        //on rend le filtre clické actif
         btnCategorie[i].classList.add("filtre-actif");
         document.querySelector(".gallery").innerHTML = "";
         const worksFiltre = works.filter(function(works){
         return works.category.id === i;
     });
+    //on affiche uniquement les elements de la catégorie clickée
     genererWorks(worksFiltre);
     });
 }
