@@ -112,8 +112,11 @@ nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
 }
-
-li:hover {
+a{
+	color: black;
+	text-decoration: none;
+}
+a:hover { /*a voir*/
 	color: #B1663C;
 }
 #introduction {
@@ -162,8 +165,20 @@ margin: auto;
 #login {
 	width: 30%;
 margin: auto;
+display: flex;
+flex-direction: column;
 }
-
+#login a{
+	text-align: center;
+	text-decoration: underline;
+	color:#3d3d3d;
+}
+.page-active{
+	font-weight: bold;
+}
+#login a:hover{
+	color:#B1663C;
+}
 #contact > * ,#login > *{
 	text-align: center;
 
