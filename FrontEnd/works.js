@@ -4,6 +4,18 @@ const listeCategories = await fetch("http://localhost:5678/api/categories");
 const categories = await listeCategories.json();
 const tokenTest = sessionStorage.getItem("authToken");
 console.log("token page principale : ",tokenTest);
+const statusConnect = document.querySelectorAll(".status")
+if(tokenTest !== null){
+    statusConnect[0].classList.add("connected");
+    statusConnect[1].classList.remove("connected");
+}
+const logout = document.querySelector(".logout");
+logout.addEventListener("click", function(){
+    sessionStorage.removeItem("authToken");
+    statusConnect[0].classList.remove("connected");
+    statusConnect[1].classList.add("connected");
+    window.location.href = "index.html";
+});
 function genererWorks(works){
     for(let i = 0; i < works.length ; i++){
         const work = works[i];

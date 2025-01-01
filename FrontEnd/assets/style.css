@@ -167,6 +167,9 @@ a:hover { /*a voir*/
 	width: 50%;
 margin: auto;
 }
+.connected{
+	display : none;
+}
 #login {
 	width: 30%;
 margin: auto;
