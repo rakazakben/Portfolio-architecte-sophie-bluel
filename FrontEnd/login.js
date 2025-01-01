@@ -1,0 +1,42 @@
+function connectUser(){
+        const formLogin = document.querySelector(".form-login");
+        formLogin.addEventListener("submit",async function(event){
+            event.preventDefault();
+            const log = {
+                
+                    email: event.target.querySelector("[name=email]").value,
+                    password: event.target.querySelector("[name=password]").value
+            };
+            console.log(log);
+            const requeteLog = JSON.stringify(log);
+            console.log(requeteLog);
+            try {
+                
+                const reponse = await fetch("http://localhost:5678/api/users/login", {
+                    method:"POST",
+                    headers: {
+                        "Content-Type":"application/json",
+                    },
+                    body: requeteLog
+                });
+                if(!reponse.ok){
+                    throw new Error('email ou mdp incorrect');
+                }
+                
+                const data = await reponse.json();
+                sessionStorage.setItem("authToken", data.token);
+                const verifToken = await sessionStorage.getItem("authToken");
+                console.log("token stocké : ",verifToken);
+                window.location.href = "index.html";
+            } 
+            catch (Error) {
+                const messageErreur =document.createElement("p");
+                messageErreur.classList.add("erreur-connect");
+                messageErreur.innerText = "mauvais mot de passe et/ou email";
+                formLogin.prepend(messageErreur);
+            }
+            
+
+        });
+}
+connectUser();

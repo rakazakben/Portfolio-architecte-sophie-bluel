@@ -22,6 +22,11 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
+	
+	
+}
+body {
+	background-color:#FFFEF8;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -179,6 +184,9 @@ flex-direction: column;
 #login a:hover{
 	color:#B1663C;
 }
+.erreur-connect{
+	color: red;
+}
 #contact > * ,#login > *{
 	text-align: center;
 
@@ -217,7 +225,9 @@ input[type="submit"]{
 	text-align: center;
 	border-radius: 60px ;
 }
-
+footer{
+	background-color: white;
+}
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;

@@ -2,7 +2,8 @@ const stockWorks = await fetch("http://localhost:5678/api/works");
 const works = await stockWorks.json();
 const listeCategories = await fetch("http://localhost:5678/api/categories");
 const categories = await listeCategories.json();
-
+const tokenTest = sessionStorage.getItem("authToken");
+console.log("token page principale : ",tokenTest);
 function genererWorks(works){
     for(let i = 0; i < works.length ; i++){
         const work = works[i];
