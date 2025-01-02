@@ -22,7 +22,7 @@ function connectUser(){
                 if(!reponse.ok){
                     throw new Error('email ou mdp incorrect');
                 }
-                
+
                 const data = await reponse.json();
                 sessionStorage.setItem("authToken", data.token);
                 const verifToken = await sessionStorage.getItem("authToken");

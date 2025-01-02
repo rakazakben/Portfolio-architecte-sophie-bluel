@@ -3,7 +3,9 @@ const works = await stockWorks.json();
 const listeCategories = await fetch("http://localhost:5678/api/categories");
 const categories = await listeCategories.json();
 const tokenTest = sessionStorage.getItem("authToken");
-console.log("token page principale : ",tokenTest);
+console.log(tokenTest);
+//console.log("token page principale : ",tokenTest);
+//on vérifie la présence du token de connection et change le lien login/logout en fonction 
 const statusConnect = document.querySelectorAll(".status")
 if(tokenTest !== null){
     statusConnect[0].classList.add("connected");
@@ -16,6 +18,7 @@ logout.addEventListener("click", function(){
     statusConnect[1].classList.add("connected");
     window.location.href = "index.html";
 });
+//génération de l'affichage des travaux
 function genererWorks(works){
     for(let i = 0; i < works.length ; i++){
         const work = works[i];
