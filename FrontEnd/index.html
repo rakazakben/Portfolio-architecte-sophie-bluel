@@ -11,20 +11,25 @@
 	<link rel="stylesheet" href="./assets/style.css">
 	<script src="https://kit.fontawesome.com/aa090f076d.js" crossorigin="anonymous"></script>
 	<script type="module" src="works.js"></script>
+	<script type="module" src="config.js"></script>
 </head>
 <body>
 <header>
-	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
-	<nav>
-		<ul>
-			<li><a href="index.html">projets</a></li>
-			<li><a href="#contact">contact</a></li>
-			<li><a href="login.html" class="status">login</a>
-				<a href="#"class="logout status connected">logout</a>
-			</li>
-			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
-		</ul>
-	</nav>
+	<!--<div class="edit-mode"><p><i class="fa-regular fa-pen-to-square"></i> Mode édition</p></div>-->
+	<div class="header-edit">
+		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+		<nav>
+			<ul>
+				<li><a href="index.html">projets</a></li>
+				<li><a href="#contact">contact</a></li>
+				<li><a href="login.html" class="status">login</a>
+					<a href="#"class="logout status connected">logout</a>
+				</li>
+				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
+			</ul>
+		</nav>
+	</div>
+	
 </header>
 <main>
 	<section id="introduction">
@@ -39,7 +44,10 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<h2>Mes Projets</h2>
+		<div class="edit-project">
+    		<h2>Mes Projets</h2>
+    		<!--<a href="#"><i class="fa-regular fa-pen-to-square"></i>  modifier</a>-->
+		</div>
 		<div class="btn-filtre">
 			<!--
 			<button class="btn-tous">Tous</button>

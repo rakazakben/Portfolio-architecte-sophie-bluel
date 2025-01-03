@@ -1,3 +1,4 @@
+import { apiWorks, apiCategory, apiLogin } from "./config.js";
 function connectUser(){
         const formLogin = document.querySelector(".form-login");
         formLogin.addEventListener("submit",async function(event){
@@ -12,7 +13,7 @@ function connectUser(){
             console.log(requeteLog);
             try {
                 
-                const reponse = await fetch("http://localhost:5678/api/users/login", {
+                const reponse = await fetch(apiLogin, {
                     method:"POST",
                     headers: {
                         "Content-Type":"application/json",

@@ -1,6 +1,8 @@
-const stockWorks = await fetch("http://localhost:5678/api/works");
+import { apiWorks, apiCategory, apiLogin } from "./config.js";
+console.log(apiWorks);
+const stockWorks = await fetch(apiWorks);
 const works = await stockWorks.json();
-const listeCategories = await fetch("http://localhost:5678/api/categories");
+const listeCategories = await fetch(apiCategory);
 const categories = await listeCategories.json();
 const tokenTest = sessionStorage.getItem("authToken");
 console.log(tokenTest);
@@ -8,8 +10,31 @@ console.log(tokenTest);
 //on vérifie la présence du token de connection et change le lien login/logout en fonction 
 const statusConnect = document.querySelectorAll(".status")
 if(tokenTest !== null){
+    //changement du lien login en logout
     statusConnect[0].classList.add("connected");
     statusConnect[1].classList.remove("connected");
+    //ajout du lien modifier à coté du titre h2
+    const divProject = document.querySelector(".edit-project");
+    const editLink = document.createElement("a");
+    const titleproject= document.querySelector("#portfolio h2");
+    editLink.href="#";
+    titleproject.classList.add("edit-link");
+    const editIcon= document.createElement("i");
+    editIcon.classList.add("fa-regular", "fa-pen-to-square");
+    editLink.innerText ="  modifier";
+    editLink.prepend(editIcon);
+    divProject.appendChild(editLink);
+    //ajout de la banière mode edition
+    const header = document.querySelector("header");
+    const divEdit = document.createElement("div");
+    divEdit.classList.add("edit-mode");
+    const textBaniere = document.createElement("p");
+    const iconBaniere = document.createElement("i");
+    iconBaniere.classList.add("fa-regular", "fa-pen-to-square")
+    textBaniere.innerText = " Mode édition";
+    textBaniere.prepend(iconBaniere);
+    divEdit.appendChild(textBaniere);
+    header.prepend(divEdit);
 }
 const logout = document.querySelector(".logout");
 logout.addEventListener("click", function(){

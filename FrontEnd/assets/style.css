@@ -58,10 +58,21 @@ body {
 	font-family: 'Work Sans' ;
 	font-size: 14px;
 }
-header {
+.header-edit {
 	display: flex;
 	justify-content: space-between;
 	margin: 50px 0
+}
+.edit-mode{
+	display:flex;
+	background-color: black;
+	height: 50px;
+	justify-content: center;
+    align-items: center;
+}
+.edit-mode p{
+	color: white;
+	text-align: center;
 }
 section {
 	margin: 50px 90px
@@ -136,6 +147,18 @@ a:hover { /*a voir*/
 	/*margin: auto;*/
 	width: 80%;
 }
+.edit-project{
+	display: flex;
+    justify-content: center; 
+    align-items: center; 
+    gap:15px;
+}
+.edit-link{
+	margin-left: 2.5em;
+}
+.edit-project h2 {
+    text-align: center; /* Centre le texte du titre */
+}
 
 #introduction article {
 	flex: 1
@@ -150,6 +173,7 @@ a:hover { /*a voir*/
 #portfolio h2 {
 	text-align: center;
 	margin-bottom: 1em;
+	margin-top: 1em;
 }
 .gallery {
 	width: 100%;
