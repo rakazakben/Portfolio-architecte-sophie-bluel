@@ -2,6 +2,70 @@
    v2.0 | 20110126
    License: none (public domain)
 */
+.background-modale {
+    display: none; 
+    justify-content: center; 
+    align-items: center; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    height: 100vh; 
+    width: 100vw; 
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 1000; 
+}
+.active-modale{
+	display: flex !important;
+}
+.modale h3{
+	font-size : 1.17em;
+	font-weight: 400;
+
+}
+.modale{
+	display: flex;
+	flex-direction: column;
+	background-color: white; 
+    padding: 20px; 
+    border-radius: 10px; 
+	width: 30%;
+    text-align: center; 
+    z-index: 1010; 
+	align-items: center;
+}
+.fa-xmark{
+	margin-left: 95%;
+}
+.fa-xmark:hover{
+	cursor: pointer;
+}
+.gallery-modale{
+	margin-top: 30px;
+    width: 85%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-column-gap: 5px;
+    grid-row-gap: 20px;
+	border-bottom: #b3b3b3 1px solid;
+	padding-bottom: 30px;
+}
+.gallery-modale img {
+	width: 100%;
+
+}
+#ajout-photo{
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	text-align: center;
+	border-radius: 60px ;
+	border: 0px;
+	padding:10px 0px 10px 0px;
+	width: 50%;
+	margin: 20px;
+	
+}
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -260,4 +324,7 @@ footer nav ul {
 	justify-content: flex-end;
 	margin: 2em
 }
+
+/*modale edition*/
+
 

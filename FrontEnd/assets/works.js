@@ -9,15 +9,16 @@ console.log(tokenTest);
 //console.log("token page principale : ",tokenTest);
 //on vérifie la présence du token de connection et change le lien login/logout en fonction
 const statusConnect = document.querySelectorAll(".status")
+//etat authentifié ==>
 if(tokenTest !== null){
     //changement du lien login en logout
     statusConnect[0].classList.add("connected");
     statusConnect[1].classList.remove("connected");
     //ajout du lien modifier à coté du titre h2
     const divProject = document.querySelector(".edit-project");
-    const editLink = document.createElement("a");
+    const editLink = document.createElement("span");
     const titleproject= document.querySelector("#portfolio h2");
-    editLink.href="#";
+    //editLink.href="#";
     titleproject.classList.add("edit-link");
     const editIcon= document.createElement("i");
     editIcon.classList.add("fa-regular", "fa-pen-to-square");
@@ -35,6 +36,19 @@ if(tokenTest !== null){
     textBaniere.prepend(iconBaniere);
     divEdit.appendChild(textBaniere);
     header.prepend(divEdit);
+    const backgroundModale = document.querySelector(".background-modale");
+    editLink.addEventListener("click", function(){
+    console.log("click sur le bouton modifier");
+    backgroundModale.classList.add("active-modale");
+    const xmark = document.querySelector(".fa-xmark");
+    xmark.addEventListener("click", function(){
+        backgroundModale.classList.remove("active-modale");
+    });
+    backgroundModale.addEventListener("click", function(){
+        backgroundModale.classList.remove("active-modale");
+    });
+});
+    
 }
 const logout = document.querySelector(".logout");
 logout.addEventListener("click", function(){
