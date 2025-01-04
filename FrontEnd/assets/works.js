@@ -7,7 +7,7 @@ const categories = await listeCategories.json();
 const tokenTest = sessionStorage.getItem("authToken");
 console.log(tokenTest);
 //console.log("token page principale : ",tokenTest);
-//on vérifie la présence du token de connection et change le lien login/logout en fonction 
+//on vérifie la présence du token de connection et change le lien login/logout en fonction
 const statusConnect = document.querySelectorAll(".status")
 if(tokenTest !== null){
     //changement du lien login en logout
