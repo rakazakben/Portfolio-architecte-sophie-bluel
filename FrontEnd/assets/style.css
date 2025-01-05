@@ -66,6 +66,33 @@
 	margin: 20px;
 	
 }
+.gallery-modale figure{
+		position: relative; /* Nécessaire pour positionner le bouton par rapport à l'image */
+		display: inline-block;
+}
+.gallery-modale figure img {
+    display: block; /* Supprime l'espace sous l'image */
+    width: 100%; /* Ajuste la taille de l'image si nécessaire */
+    height: auto;
+}
+.delete-button {
+    position: absolute; /* Positionne le bouton par rapport au conteneur */
+    top: 3px; /* Distance depuis le haut */
+    right: 3px; /* Distance depuis la droite */
+    background-color: black; /* Couleur de fond du bouton */
+    color: white; /* Couleur de l'icône */
+    border: none; /* Pas de bordure */
+    border-radius: 2px; /* Bouton rond */
+    width: 17px; /* Taille du bouton */
+    height: 17px; /* Taille du bouton */
+    display: flex; /* Centrage de l'icône */
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.delete-button i {
+    font-size: 9px; /* Ajuste la taille de l'icône */
+}
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -137,6 +164,10 @@ body {
 .edit-mode p{
 	color: white;
 	text-align: center;
+}
+.edit-project span:hover{
+	color:#B1663C;
+	cursor: pointer;
 }
 section {
 	margin: 50px 90px

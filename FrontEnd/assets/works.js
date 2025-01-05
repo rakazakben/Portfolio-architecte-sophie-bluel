@@ -44,8 +44,11 @@ if(tokenTest !== null){
     xmark.addEventListener("click", function(){
         backgroundModale.classList.remove("active-modale");
     });
-    backgroundModale.addEventListener("click", function(){
+    backgroundModale.addEventListener("click", (event) =>{
+        if(event.target === backgroundModale){
         backgroundModale.classList.remove("active-modale");
+        console.log("click hors modale");
+        }
     });
 });
     
@@ -58,7 +61,7 @@ logout.addEventListener("click", function(){
     window.location.href = "index.html";
 });
 //génération de l'affichage des travaux
-function genererWorks(works){
+export function genererWorks(works){
     for(let i = 0; i < works.length ; i++){
         const work = works[i];
         const divGallery = document.querySelector(".gallery");
