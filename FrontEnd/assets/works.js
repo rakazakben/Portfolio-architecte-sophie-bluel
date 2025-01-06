@@ -5,8 +5,6 @@ const works = await stockWorks.json();
 const listeCategories = await fetch(apiCategory);
 const categories = await listeCategories.json();
 const tokenTest = sessionStorage.getItem("authToken");
-console.log(tokenTest);
-//console.log("token page principale : ",tokenTest);
 //on vérifie la présence du token de connection et change le lien login/logout en fonction
 const statusConnect = document.querySelectorAll(".status")
 //etat authentifié ==>
@@ -18,7 +16,6 @@ if(tokenTest !== null){
     const divProject = document.querySelector(".edit-project");
     const editLink = document.createElement("span");
     const titleproject= document.querySelector("#portfolio h2");
-    //editLink.href="#";
     titleproject.classList.add("edit-link");
     const editIcon= document.createElement("i");
     editIcon.classList.add("fa-regular", "fa-pen-to-square");
@@ -37,21 +34,21 @@ if(tokenTest !== null){
     divEdit.appendChild(textBaniere);
     header.prepend(divEdit);
     const backgroundModale = document.querySelector(".background-modale");
+    //apparition de la modale lors du click sur le bouton modifier
     editLink.addEventListener("click", function(){
-    console.log("click sur le bouton modifier");
-    backgroundModale.classList.add("active-modale");
-    const xmark = document.querySelector(".fa-xmark");
-    xmark.addEventListener("click", function(){
-        backgroundModale.classList.remove("active-modale");
+        backgroundModale.classList.add("active-modale");
+        const xmark = document.querySelector(".fa-xmark");
+    //disparition de la modale lors du click sur la croix
+        xmark.addEventListener("click", function(){
+            backgroundModale.classList.remove("active-modale");
     });
-    backgroundModale.addEventListener("click", (event) =>{
-        if(event.target === backgroundModale){
-        backgroundModale.classList.remove("active-modale");
-        console.log("click hors modale");
-        }
+    //disparition de la modale lors du click sur le fond
+        backgroundModale.addEventListener("click", (event) =>{
+            if(event.target === backgroundModale){
+            backgroundModale.classList.remove("active-modale");
+            }
+        });
     });
-});
-    
 }
 const logout = document.querySelector(".logout");
 logout.addEventListener("click", function(){

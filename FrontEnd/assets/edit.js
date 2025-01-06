@@ -2,7 +2,8 @@ import { apiWorks, apiCategory, apiLogin } from "./config.js";
 import { genererWorks } from "./works.js";
 const stockWorks = await fetch(apiWorks);
 const works = await stockWorks.json();
-export function genererModaleWorks(works){
+//fonction de génération des travaux dans la galerie de la modale
+function genererModaleWorks(works){
     for(let i = 0; i < works.length ; i++){
         const work = works[i];
         const divGallery = document.querySelector(".gallery-modale");
@@ -23,11 +24,9 @@ export function genererModaleWorks(works){
         
     }
 }
-
-
-const editLink = document.querySelector(".edit-project a");
-
+//on genere les travaux dans la modale
 genererModaleWorks(works);
+//fonction de génération des boutons de suppression dans la modale
 function genererDeletebutton(works){
     for(let i=0; i< works.length; i++){
     const elementGallery = document.querySelectorAll(".gallery-modale figure");
@@ -40,23 +39,32 @@ function genererDeletebutton(works){
    
 }
 }
+//on génére une première fois les boutons de suppression
 genererDeletebutton(works);
+//on selectionne tous les boutons de suppression générés
 const deleteElement = document.querySelectorAll(".gallery-modale button");
+//boucle de test de click sur les boutons
 for(let i=0; i<deleteElement.length; i++){
+    //on écoute l'evenement click sur un bouton
 deleteElement[i].addEventListener("click", async function(){
-    console.log(apiWorks + "/"+ works[i].id);
+    console.log(apiWorks + "/"+ works[i].id); // à supprimer : debuggage
+    //on requette à l'api de supprimer le projet correspondant 
     await fetch(apiWorks + "/"+ works[i].id,{
         method:"DELETE",
             headers: {
                 "Authorization": "Bearer "+ sessionStorage.getItem("authToken"),
             },
     });
+    //on nettoie les deux galeries
     document.querySelector(".gallery-modale").innerHTML = "";
     document.querySelector(".gallery").innerHTML = "";
+    //on récupère l'etat des travaux de l'api
     const stockWorks = await fetch(apiWorks);
     const worksdeleted = await stockWorks.json();
+    //on regenère les galeries avec les nouveaux travaux de l'api
     genererModaleWorks(worksdeleted);
     genererDeletebutton(worksdeleted);
+    //on genère les boutons de suppression de nouveau
     genererWorks(worksdeleted);
     });
 
