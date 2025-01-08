@@ -1,5 +1,4 @@
 import { apiWorks, apiCategory, apiLogin } from "./config.js";
-console.log(apiWorks);
 const stockWorks = await fetch(apiWorks);
 const works = await stockWorks.json();
 const listeCategories = await fetch(apiCategory);
@@ -106,7 +105,6 @@ const btnTous = document.querySelector(".btn-tous");
 const btnCategorie = document.querySelectorAll(".btn-filtre button");
 //affichage de tous les works lors du clic sur le bouton "Tous"
 btnTous.addEventListener("click",async function(){
-    console.log("bouton clické");
     //lors du click sur un des bouton on rend tous les filtres inactifs
     for(let j=0; j< btnCategorie.length;j++){
         btnCategorie[j].classList.remove("filtre-actif");

@@ -47,7 +47,6 @@ const deleteElement = document.querySelectorAll(".gallery-modale button");
 for(let i=0; i<deleteElement.length; i++){
     //on écoute l'evenement click sur un bouton
 deleteElement[i].addEventListener("click", async function(){
-    console.log(apiWorks + "/"+ works[i].id); // à supprimer : debuggage
     //on requette à l'api de supprimer le projet correspondant 
     await fetch(apiWorks + "/"+ works[i].id,{
         method:"DELETE",
