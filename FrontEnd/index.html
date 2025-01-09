@@ -77,12 +77,49 @@
 </footer>
 <div class="background-modale">
 	<div class="modale">
-		<i class="fa-solid fa-xmark"></i>
-		<h3>Galerie photo</h3>
-		<div class="gallery-modale">
+		<div class="delete-modale inactive-modale">
+			<i class="fa-solid fa-xmark"></i>
+			<h3>Galerie photo</h3>
+			<div class="gallery-modale">
+			</div>
+			<button id="ajout-photo">Ajouter une photo</button>
 		</div>
-		<button id="ajout-photo">Ajouter une photo</button>
-		
+		<div class="ajout-modale">
+			<div class="nav-modale">
+				<i class="fa-solid fa-arrow-left"></i>
+				<i class="fa-solid fa-xmark"></i>
+			</div>
+			
+			<h3>Ajout photo</h3>
+			<form class="photo-form">
+				<div class="file-upload">
+					<label for="file-input" class="file-label">
+						<i class="fa-regular fa-image"></i>
+						<span>+ Ajouter photo</span>
+					</label>
+					<input type="file" id="file-input" class="file-input" accept=".jpg, .png" />
+					<p class="file-info">jpg, png : 4mo max</p>
+				</div>
+	
+				<div class="form-group">
+					<label for="title">Titre</label>
+					<input type="text" id="title" placeholder="Titre" required>
+				
+	
+				
+					<label for="category">Catégorie</label>
+					<select id="category" required>
+						<option value="" disabled selected>Choisir une catégorie</option>
+						<option value="nature">Nature</option>
+						<option value="voyage">Voyage</option>
+						<option value="art">Art</option>
+						<option value="autre">Autre</option>
+					</select>
+				</div>
+				<button type="submit" class="submit-btn">Valider</button>
+			</form>
+		</div>
+	
 	</div>
 </div>
 </body>

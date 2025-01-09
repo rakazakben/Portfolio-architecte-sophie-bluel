@@ -36,11 +36,14 @@ if(tokenTest !== null){
     //apparition de la modale lors du click sur le bouton modifier
     editLink.addEventListener("click", function(){
         backgroundModale.classList.add("active-modale");
-        const xmark = document.querySelector(".fa-xmark");
+        const xmark = document.querySelectorAll(".fa-xmark");
     //disparition de la modale lors du click sur la croix
-        xmark.addEventListener("click", function(){
+    for(let i =0; i< xmark.length ; i++){
+        xmark[i].addEventListener("click", function(){
             backgroundModale.classList.remove("active-modale");
     });
+    }
+       
     //disparition de la modale lors du click sur le fond
         backgroundModale.addEventListener("click", (event) =>{
             if(event.target === backgroundModale){
