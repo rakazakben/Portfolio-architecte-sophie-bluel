@@ -1,4 +1,5 @@
 import { apiWorks, apiCategory, apiLogin } from "./config.js";
+import { categoryAjoutModale } from "./edit.js";
 const stockWorks = await fetch(apiWorks);
 const works = await stockWorks.json();
 const listeCategories = await fetch(apiCategory);
@@ -43,13 +44,25 @@ if(tokenTest !== null){
             backgroundModale.classList.remove("active-modale");
     });
     }
-       
-    //disparition de la modale lors du click sur le fond
+       //disparition de la modale lors du click sur le fond
         backgroundModale.addEventListener("click", (event) =>{
             if(event.target === backgroundModale){
             backgroundModale.classList.remove("active-modale");
             }
         });
+    });
+    const divDeleteModale = document.querySelector(".delete-modale");
+    const divAjoutModale = document.querySelector(".ajout-modale");
+    const ajoutButton = document.getElementById("ajout-photo");
+    ajoutButton.addEventListener("click", function(){
+        divAjoutModale.classList.remove("inactive-modale")
+        divDeleteModale.classList.add("inactive-modale");
+        categoryAjoutModale(categories);
+    });
+    const retourModale = document.querySelector(".fa-arrow-left");
+    retourModale.addEventListener("click", function(){
+        divAjoutModale.classList.add("inactive-modale")
+        divDeleteModale.classList.remove("inactive-modale");
     });
 }
 const logout = document.querySelector(".logout");

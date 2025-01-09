@@ -2,6 +2,8 @@ import { apiWorks, apiCategory, apiLogin } from "./config.js";
 import { genererWorks } from "./works.js";
 const stockWorks = await fetch(apiWorks);
 const works = await stockWorks.json();
+const listeCategories = await fetch(apiCategory);
+const categories = await listeCategories.json();
 //fonction de génération des travaux dans la galerie de la modale
 function genererModaleWorks(works){
     for(let i = 0; i < works.length ; i++){
@@ -66,7 +68,25 @@ deleteElement[i].addEventListener("click", async function(){
     //on genère les boutons de suppression de nouveau
     genererWorks(worksdeleted);
     });
-
+}
+export function categoryAjoutModale(categories){
+    const selecteurCategorie = document.getElementById("category");
+    const choixInitial = document.createElement("option")
+    choixInitial.value = ""; // Définit l'attribut value à une chaîne vide
+    choixInitial.disabled = true; // Rend l'option non sélectionnable
+    choixInitial.selected = true; // Définit l'option comme sélectionnée par défaut
+    choixInitial.textContent = "Choisir une catégorie";
     
+    selecteurCategorie.innerHTML ="";
+    selecteurCategorie.appendChild(choixInitial);
+    for(let i =0 ; i < categories.length; i++){
+        const categorie = categories[i];
+        
+        const optionSelecteur = document.createElement("option");
+        optionSelecteur.textContent = categorie.name;
+        optionSelecteur.value = categorie.id;
+        //on créé tous les boutons de catégorie dans la div filtres
+        selecteurCategorie.appendChild(optionSelecteur);
+    }
 
 }

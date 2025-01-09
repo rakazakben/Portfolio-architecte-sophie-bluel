@@ -35,6 +35,9 @@
 	width:100%;
 	display:flex;
 }
+.nav-modale .fa-xmark{
+	margin-left:94%;
+}
 .fa-arrow-left:hover{
 	cursor:pointer;
 }
@@ -142,6 +145,7 @@ select {
     padding: 20px; 
     border-radius: 10px; 
 	width: 30%;
+	height: 64%;
     text-align: center; 
     z-index: 1010; 
 	align-items: center;
