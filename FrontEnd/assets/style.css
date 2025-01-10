@@ -24,6 +24,7 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	position: relative;
 }
 .ajout-modale{
 	display:flex ;
@@ -34,6 +35,7 @@
 .nav-modale{
 	width:100%;
 	display:flex;
+	position: relative;
 }
 .nav-modale .fa-xmark{
 	margin-left:94%;
@@ -145,13 +147,16 @@ select {
     padding: 20px; 
     border-radius: 10px; 
 	width: 30%;
-	height: 64%;
+	/*height: 64%;*/
     text-align: center; 
     z-index: 1010; 
 	align-items: center;
 }
 .fa-xmark{
-	margin-left: 95%;
+	/*margin-left: 95%;*/
+	position:absolute;
+	top:3px;
+	right:3px;
 }
 .fa-xmark:hover{
 	cursor: pointer;
@@ -182,6 +187,9 @@ select {
 	width: 50%;
 	margin: 20px;
 	
+}
+#ajout-photo:hover{
+	cursor: pointer;
 }
 .gallery-modale figure{
 		position: relative; /* Nécessaire pour positionner le bouton par rapport à l'image */
