@@ -1,5 +1,6 @@
-import { apiWorks, apiCategory, apiLogin } from "./config.js";
+import { apiWorks, apiCategory } from "./config.js";
 import { categoryAjoutModale} from "./edit.js";
+
 const stockWorks = await fetch(apiWorks);
 const works = await stockWorks.json();
 const listeCategories = await fetch(apiCategory);
@@ -51,15 +52,18 @@ if(tokenTest !== null){
             }
         });
     });
+
     const divDeleteModale = document.querySelector(".delete-modale");
     const divAjoutModale = document.querySelector(".ajout-modale");
     const ajoutButton = document.getElementById("ajout-photo");
+    //apparition de la modale d'ajout de projet lors du clic sur "Ajouter une photo"
     ajoutButton.addEventListener("click", function(){
         divAjoutModale.classList.remove("inactive-modale")
         divDeleteModale.classList.add("inactive-modale");
         categoryAjoutModale(categories);
     });
     const retourModale = document.querySelector(".fa-arrow-left");
+    //retour à la modale de suppression lors du clic sur la fleche retour
     retourModale.addEventListener("click", function(){
         divAjoutModale.classList.add("inactive-modale")
         divDeleteModale.classList.remove("inactive-modale");
@@ -67,10 +71,14 @@ if(tokenTest !== null){
     });
 }
 const logout = document.querySelector(".logout");
+//deconnection lors du clic sur logout
 logout.addEventListener("click", function(){
+    //suppression du token d'authentification
     sessionStorage.removeItem("authToken");
-    statusConnect[0].classList.remove("connected");
-    statusConnect[1].classList.add("connected");
+    //disparition du lien logout et apparition du lien login
+    //statusConnect[0].classList.remove("connected");
+    //statusConnect[1].classList.add("connected");
+    //Actualisation de la page pour checker l'absence de token dans le if(tokenTest ==! null)
     window.location.href = "index.html";
 });
 //génération de l'affichage des travaux
