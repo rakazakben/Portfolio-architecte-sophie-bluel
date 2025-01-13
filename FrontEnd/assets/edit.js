@@ -236,5 +236,35 @@ projectForm.addEventListener('submit', async (event) => {
 });
 /*************************************************************************************************/
 
+/************************changement d'etat du bouton valider du formulaire************************/
+  
+  const boutonForm = document.querySelector(".submit-btn");
+
+  /*******fonction de vérification du remplissage de tous les champs *****************************/
+  function verifForm(){
+    
+    const image = fichier.files.length > 0; // Fichier sélectionné par l'utilisateur
+    const titre = titreInput.value.trim() !== ""; // Titre entré par l'utilisateur
+    const categorie = categorieInput.value !== ""; // Catégorie choisie
+    if (image && titre && categorie){
+      boutonForm.classList.add("active-btn"); //si tous les champs sont remplis on active le bouton d'envoi
+
+    }
+    else{
+      boutonForm.classList.remove("active-btn"); // sinon on desactive le bouton d'envoi
+      
+    }
+  }
+  //à chaque changement dans les champs de formulaire on verifie l'etat de tous les champs
+  fichier.addEventListener("input", verifForm);
+  titreInput.addEventListener("input", verifForm);
+  categorieInput.addEventListener("change", verifForm);
+  //lors du clic sur le bouton on le desactive
+  boutonForm.addEventListener("click", function(){
+  boutonForm.classList.remove("active-btn");
+  });
+    
+
+  
 
 
