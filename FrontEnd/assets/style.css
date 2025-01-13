@@ -417,7 +417,9 @@ a:hover { /*a voir*/
 	grid-column-gap: 20px;
 	grid-row-gap: 20px;
 }
-
+.gallery figure{
+	display:flex;
+}
 .gallery img {
 	width: 100%;
 

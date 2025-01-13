@@ -28,52 +28,66 @@ function genererModaleWorks(works){
 }
 //on genere les travaux dans la modale
 genererModaleWorks(works);
+
 //fonction de génération des boutons de suppression dans la modale
-function genererDeletebutton(works){
-    for(let i=0; i< works.length; i++){
-    const elementGallery = document.querySelectorAll(".gallery-modale figure");
-    const deleteElement = document.createElement("button");
-    const deleteIcon = document.createElement("i");
-    deleteElement.classList.add("delete-button");
-    deleteIcon.classList.add("fa-solid", "fa-trash-can");
-    deleteElement.appendChild(deleteIcon);
-    elementGallery[i].appendChild(deleteElement);
-   
-}
+function genererDeletebutton(works) {
+    const divGallery = document.querySelector(".gallery-modale");
+    for (let i = 0; i < works.length; i++) {
+        const elementGallery = divGallery.querySelectorAll("figure")[i];
+        const deleteElement = document.createElement("button");
+        const deleteIcon = document.createElement("i");
+
+        deleteElement.classList.add("delete-button");
+        deleteIcon.classList.add("fa-solid", "fa-trash-can");
+
+        deleteElement.appendChild(deleteIcon);
+        elementGallery.appendChild(deleteElement);
+    }
 }
 //on génére une première fois les boutons de suppression
 genererDeletebutton(works);
-//on selectionne tous les boutons de suppression générés
-export function deleteProject(){
-    const deleteElement = document.querySelectorAll(".gallery-modale button");
-    //boucle de test de click sur les boutons
-    for(let i=0; i<deleteElement.length; i++){
-        //on écoute l'evenement click sur un bouton
-    deleteElement[i].addEventListener("click", async function(){
-        //on requette à l'api de supprimer le projet correspondant 
-        const refreshWorks = await fetch(apiWorks);
-        const actualWorks = await refreshWorks.json();
-        await fetch(apiWorks + "/"+ actualWorks[i].id,{
-            method:"DELETE",
-                headers: {
-                    "Authorization": "Bearer "+ sessionStorage.getItem("authToken"),
-                },
-        });
-        //on nettoie les deux galeries
-        document.querySelector(".gallery-modale").innerHTML = "";
-        document.querySelector(".gallery").innerHTML = "";
-        //on récupère l'etat des travaux de l'api
-        const stockWorks = await fetch(apiWorks);
-        const worksdeleted = await stockWorks.json();
-        //on regenère les galeries avec les nouveaux travaux de l'api
-        genererModaleWorks(worksdeleted);
-        genererDeletebutton(worksdeleted);
-        //on genère les boutons de suppression de nouveau
-        genererWorks(worksdeleted);
-        });
-    }}
-deleteProject();
 
+const divGallery =document.querySelector(".gallery-modale");
+divGallery.addEventListener("click", async function (event) {
+    if (event.target.closest(".delete-button")) {
+        
+        const button = event.target.closest(".delete-button");
+        const figure = button.closest("figure");
+        const index = Array.from(document.querySelectorAll(".gallery-modale figure")).indexOf(figure);
+        console.log("index:" + index);
+        //console.log("works[index].id" + works[index].id);
+        const refreshWorks = await fetch(apiWorks);
+        const updatedWorks = await refreshWorks.json();
+        if (index !== -1) {
+            // Suppression via API
+            const response = await fetch(apiWorks + "/" + updatedWorks[index].id, {
+                method: "DELETE",
+                headers: {
+                    "Authorization": `Bearer ${sessionStorage.getItem("authToken")}`,
+                },
+            });
+
+            if (response.ok) {
+                //console.log(`Projet ${updatedWorks[index].title} supprimé avec succès.`);
+                // Actualiser la galerie
+                document.querySelector(".gallery-modale").innerHTML = "";
+                document.querySelector(".gallery").innerHTML = "";
+
+                // Récupérer les nouveaux travaux
+                const refreshWorks = await fetch(apiWorks);
+                const updatedWorks = await refreshWorks.json();
+
+                // Regénérer les galeries
+                genererModaleWorks(updatedWorks);
+                genererWorks(updatedWorks);
+                genererDeletebutton(updatedWorks); // Regénère les boutons
+            } else {
+                console.error("Erreur lors de la suppression :", response.statusText);
+            }
+        }
+    }
+});
+//ajout des categories dans le menu déroulant
 export function categoryAjoutModale(categories){
     const selecteurCategorie = document.getElementById("category");
     const choixInitial = document.createElement("option")
@@ -135,7 +149,8 @@ async function sendProject(image, titre, categorie){
       catch (error) {
         console.error('Erreur réseau ou autre :', error);
       }
-    }
+}
+
 const titreInput = document.getElementById("title"); // Champ pour le titre
 const categorieInput = document.getElementById("category"); // Champ pour la catégorie
 
@@ -144,7 +159,7 @@ const projectForm = document.querySelector(".photo-form");
 
     projectForm.addEventListener('submit', async (event) => {
     event.preventDefault(); // Empêche le rechargement de la page
-
+    console.log(sessionStorage.getItem("authToken"));
     const image = fichier.files[0]; // Fichier sélectionné par l'utilisateur
     const titre = titreInput.value; // Titre entré par l'utilisateur
     const categorie = categorieInput.value; // Catégorie choisie
@@ -166,7 +181,7 @@ const projectForm = document.querySelector(".photo-form");
     projectForm.reset();
     const testImage = document.querySelector(".preview-project img");
     testImage.src = "";
-    await deleteProject();
+    
 
 
   } else {

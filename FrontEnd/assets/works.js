@@ -1,5 +1,5 @@
 import { apiWorks, apiCategory, apiLogin } from "./config.js";
-import { categoryAjoutModale, deleteProject} from "./edit.js";
+import { categoryAjoutModale} from "./edit.js";
 const stockWorks = await fetch(apiWorks);
 const works = await stockWorks.json();
 const listeCategories = await fetch(apiCategory);
