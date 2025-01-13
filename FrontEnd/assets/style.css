@@ -419,6 +419,8 @@ a:hover { /*a voir*/
 }
 .gallery figure{
 	display:flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 .gallery img {
 	width: 100%;
