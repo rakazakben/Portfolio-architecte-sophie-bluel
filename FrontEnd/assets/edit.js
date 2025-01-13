@@ -44,31 +44,36 @@ function genererDeletebutton(works){
 //on génére une première fois les boutons de suppression
 genererDeletebutton(works);
 //on selectionne tous les boutons de suppression générés
-const deleteElement = document.querySelectorAll(".gallery-modale button");
-//boucle de test de click sur les boutons
-for(let i=0; i<deleteElement.length; i++){
-    //on écoute l'evenement click sur un bouton
-deleteElement[i].addEventListener("click", async function(){
-    //on requette à l'api de supprimer le projet correspondant 
-    await fetch(apiWorks + "/"+ works[i].id,{
-        method:"DELETE",
-            headers: {
-                "Authorization": "Bearer "+ sessionStorage.getItem("authToken"),
-            },
-    });
-    //on nettoie les deux galeries
-    document.querySelector(".gallery-modale").innerHTML = "";
-    document.querySelector(".gallery").innerHTML = "";
-    //on récupère l'etat des travaux de l'api
-    const stockWorks = await fetch(apiWorks);
-    const worksdeleted = await stockWorks.json();
-    //on regenère les galeries avec les nouveaux travaux de l'api
-    genererModaleWorks(worksdeleted);
-    genererDeletebutton(worksdeleted);
-    //on genère les boutons de suppression de nouveau
-    genererWorks(worksdeleted);
-    });
-}
+export function deleteProject(){
+    const deleteElement = document.querySelectorAll(".gallery-modale button");
+    //boucle de test de click sur les boutons
+    for(let i=0; i<deleteElement.length; i++){
+        //on écoute l'evenement click sur un bouton
+    deleteElement[i].addEventListener("click", async function(){
+        //on requette à l'api de supprimer le projet correspondant 
+        const refreshWorks = await fetch(apiWorks);
+        const actualWorks = await refreshWorks.json();
+        await fetch(apiWorks + "/"+ actualWorks[i].id,{
+            method:"DELETE",
+                headers: {
+                    "Authorization": "Bearer "+ sessionStorage.getItem("authToken"),
+                },
+        });
+        //on nettoie les deux galeries
+        document.querySelector(".gallery-modale").innerHTML = "";
+        document.querySelector(".gallery").innerHTML = "";
+        //on récupère l'etat des travaux de l'api
+        const stockWorks = await fetch(apiWorks);
+        const worksdeleted = await stockWorks.json();
+        //on regenère les galeries avec les nouveaux travaux de l'api
+        genererModaleWorks(worksdeleted);
+        genererDeletebutton(worksdeleted);
+        //on genère les boutons de suppression de nouveau
+        genererWorks(worksdeleted);
+        });
+    }}
+deleteProject();
+
 export function categoryAjoutModale(categories){
     const selecteurCategorie = document.getElementById("category");
     const choixInitial = document.createElement("option")
@@ -90,3 +95,82 @@ export function categoryAjoutModale(categories){
     }
 
 }
+const fichier = document.getElementById("file-input");
+const prevImage = document.querySelector(".preview-project");
+const champFichier = document.querySelector(".file-upload-info");
+fichier.addEventListener("change", function(){
+    console.log(fichier.files);
+    champFichier.classList.add("inactive-modale");
+    prevImage.classList.remove("inactive-modale");
+    prevImage.innerHTML = "";
+    const testImage = document.createElement("img");
+    testImage.src = window.URL.createObjectURL(fichier.files[0]);
+    prevImage.appendChild(testImage);
+
+});
+
+async function sendProject(image, titre, categorie){
+    const bodyPost = new FormData();
+    bodyPost.append("image", image);
+    bodyPost.append("title", titre);
+    bodyPost.append("category", categorie);
+    try {
+        // Envoie la requête POST avec fetch
+        const response = await fetch(apiWorks, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${sessionStorage.getItem("authToken")}`, // Ajoute le token d'autorisation
+          },
+          body: bodyPost, // Ajoute les données
+        });
+    
+        // Vérifie la réponse
+        if (response.ok) {
+          const result = await response.json(); // Parse la réponse JSON
+          console.log('Succès :', result);
+        } else {
+          console.error('Erreur lors de la requête :', response.status, response.statusText);
+        }
+      } 
+      catch (error) {
+        console.error('Erreur réseau ou autre :', error);
+      }
+    }
+const titreInput = document.getElementById("title"); // Champ pour le titre
+const categorieInput = document.getElementById("category"); // Champ pour la catégorie
+
+// Ajoute un écouteur d'événement au formulaire
+const projectForm = document.querySelector(".photo-form");
+
+    projectForm.addEventListener('submit', async (event) => {
+    event.preventDefault(); // Empêche le rechargement de la page
+
+    const image = fichier.files[0]; // Fichier sélectionné par l'utilisateur
+    const titre = titreInput.value; // Titre entré par l'utilisateur
+    const categorie = categorieInput.value; // Catégorie choisie
+
+  if (image && titre && categorie) {
+    await sendProject(image, titre, categorie);
+    const refreshWorks = await fetch(apiWorks);
+    const actualWorks = await refreshWorks.json();
+    document.querySelector(".gallery-modale").innerHTML = "";
+    document.querySelector(".gallery").innerHTML = "";
+    genererModaleWorks(actualWorks);
+    genererWorks(actualWorks);
+    genererDeletebutton(actualWorks);
+    champFichier.classList.remove("inactive-modale");
+    prevImage.classList.add("inactive-modale");
+    /*titreInput.value ="";
+    const choixInitial = document.querySelector("option")
+    choixInitial.selected = true;*/
+    projectForm.reset();
+    const testImage = document.querySelector(".preview-project img");
+    testImage.src = "";
+    await deleteProject();
+
+
+  } else {
+    alert("Veuillez remplir tous les champs !");
+  }
+});
+

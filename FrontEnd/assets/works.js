@@ -1,5 +1,5 @@
 import { apiWorks, apiCategory, apiLogin } from "./config.js";
-import { categoryAjoutModale } from "./edit.js";
+import { categoryAjoutModale, deleteProject} from "./edit.js";
 const stockWorks = await fetch(apiWorks);
 const works = await stockWorks.json();
 const listeCategories = await fetch(apiCategory);
@@ -63,6 +63,7 @@ if(tokenTest !== null){
     retourModale.addEventListener("click", function(){
         divAjoutModale.classList.add("inactive-modale")
         divDeleteModale.classList.remove("inactive-modale");
+        
     });
 }
 const logout = document.querySelector(".logout");
@@ -128,7 +129,9 @@ btnTous.addEventListener("click",async function(){
     //on rend le bouton "Tous" actif
     btnTous.classList.add("filtre-actif");
     document.querySelector(".gallery").innerHTML = "";
-    genererWorks(works);
+    const refreshWorks = await fetch(apiWorks);
+    const actualWorks = await refreshWorks.json();
+    genererWorks(actualWorks);
 });
 
 //tri en fonction des id des catégories
@@ -141,7 +144,9 @@ for(let i =1; i< btnCategorie.length; i++){
         //on rend le filtre clické actif
         btnCategorie[i].classList.add("filtre-actif");
         document.querySelector(".gallery").innerHTML = "";
-        const worksFiltre = works.filter(function(works){
+        const refreshWorks = await fetch(apiWorks);
+        const actualWorks = await refreshWorks.json();
+        const worksFiltre = actualWorks.filter(function(works){
         return works.category.id === i;
     });
     //on affiche uniquement les elements de la catégorie clickée
