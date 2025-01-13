@@ -29,6 +29,8 @@ function genererModaleWorks(works){
 }
 //on genere les travaux dans la modale
 genererModaleWorks(works);
+/****************************************************************************************************************/
+
 
 /*********************  fonction de génération des boutons de suppression dans la modale  *****************************/
 function genererDeletebutton(works) {
@@ -48,6 +50,7 @@ function genererDeletebutton(works) {
 }
 //on génére une première fois les boutons de suppression
 genererDeletebutton(works);
+/**********************************************************************************************************************/
 
 /*************************** gestion de la suppression des projets **************************************/
 //on selectionne la galerie de suppression pour gerer les evenements de clic sur les boutons de suppression
@@ -92,6 +95,8 @@ divGallery.addEventListener("click", async function (event) {
         }
     }
 });
+/****************************************************************************************************************/
+
 
 /*****************  ajout des categories dans le menu déroulant  *************************/
 export function categoryAjoutModale(categories){
@@ -117,6 +122,9 @@ export function categoryAjoutModale(categories){
     }
 
 }
+/*****************************************************************************************/
+
+
 /*********  gestion de la prévisualisation de l'image à envoyer ***************/
 
 //on récupère le champ d'envoie de fichier
@@ -143,6 +151,8 @@ fichier.addEventListener("change", function(){
     prevImage.appendChild(testImage);
 
 });
+/*******************************************************************************/
+
 
 /****************** fonction de l'ajout de projets via l'api ************************/
 async function sendProject(image, titre, categorie){
@@ -176,6 +186,10 @@ async function sendProject(image, titre, categorie){
         console.error('Erreur réseau ou autre :', error);
       }
 }
+/********************************************************************************************/
+
+
+
 /************************* Gestion de l'ajout de projet par le formulaire ************************/
 
 //on selectionne les champs du formulaire (le champ de fichier est déjà déclaré plus haut pour gerer la preview)
@@ -220,4 +234,7 @@ projectForm.addEventListener('submit', async (event) => {
     alert("Veuillez remplir tous les champs !"); //on notifie l'utilisateur d'un champ non rempli
   }
 });
+/*************************************************************************************************/
+
+
 

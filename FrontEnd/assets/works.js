@@ -9,7 +9,11 @@ const tokenTest = sessionStorage.getItem("authToken");
 //on vérifie la présence du token de connection et change le lien login/logout en fonction
 const statusConnect = document.querySelectorAll(".status")
 //etat authentifié ==>
+
+
+/************************** Gestion du mode edition après authentification ********************************/    
 if(tokenTest !== null){
+    /******************gestion de la page d'accueil authentifiée ********************/
     //changement du lien login en logout
     statusConnect[0].classList.add("connected");
     statusConnect[1].classList.remove("connected");
@@ -34,6 +38,9 @@ if(tokenTest !== null){
     textBaniere.prepend(iconBaniere);
     divEdit.appendChild(textBaniere);
     header.prepend(divEdit);
+    /*******************************************************************************/
+
+    /***********gestion de l'apparition de la modale ************/
     const backgroundModale = document.querySelector(".background-modale");
     //apparition de la modale lors du click sur le bouton modifier
     editLink.addEventListener("click", function(){
@@ -52,7 +59,9 @@ if(tokenTest !== null){
             }
         });
     });
+    /************************************************************/
 
+    /********** gestion de la modale d'ajout ********************/
     const divDeleteModale = document.querySelector(".delete-modale");
     const divAjoutModale = document.querySelector(".ajout-modale");
     const ajoutButton = document.getElementById("ajout-photo");
@@ -69,7 +78,10 @@ if(tokenTest !== null){
         divDeleteModale.classList.remove("inactive-modale");
         
     });
+    /************************************************************/
 }
+
+/*********** gestion de la deconnection ******************/
 const logout = document.querySelector(".logout");
 //deconnection lors du clic sur logout
 logout.addEventListener("click", function(){
@@ -81,7 +93,9 @@ logout.addEventListener("click", function(){
     //Actualisation de la page pour checker l'absence de token dans le if(tokenTest ==! null)
     window.location.href = "index.html";
 });
-//génération de l'affichage des travaux
+/******************************************************/
+
+/***************** Fonction d'affichage des travaux dans la galerie *************************/
 export function genererWorks(works){
     for(let i = 0; i < works.length ; i++){
         const work = works[i];
@@ -101,8 +115,12 @@ export function genererWorks(works){
         elementGallery.appendChild(captionElement);
     }
 }
+//affichage des travaux lors du lancement de la page
 genererWorks(works);
-//génération des filtres en fonction des catégories sur l'api
+/********************************************************************************************/
+
+
+/****************génération des filtres en fonction des catégories sur l'api**************/
 function genererFiltres(categories){
     //on se place dans la div filtre
     const divFiltres = document.querySelector(".btn-filtre");
@@ -121,10 +139,12 @@ function genererFiltres(categories){
         divFiltres.appendChild(btnFiltre);
     }
 }
-    
+//génération des filtres au lancement de la page    
 genererFiltres(categories);
+/*****************************************************************************************/
 
-//système de tri :
+
+/**************************  système de tri *************************************/
 
 const btnTous = document.querySelector(".btn-tous");
 const btnCategorie = document.querySelectorAll(".btn-filtre button");
@@ -161,3 +181,4 @@ for(let i =1; i< btnCategorie.length; i++){
     genererWorks(worksFiltre);
     });
 }
+/*********************************************************************************/
