@@ -1,4 +1,4 @@
-import { apiWorks, apiCategory, apiLogin } from "./config.js";
+import { apiLogin } from "./config.js";
 function connectUser(){
         const formLogin = document.querySelector(".form-login");
         formLogin.addEventListener("submit",async function(event){

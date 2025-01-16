@@ -150,7 +150,17 @@ fichier.addEventListener("change", function(){
     //on affiche l'image dans la zone de prévisualisation
     prevImage.appendChild(testImage);
 
+    //lors du clic sur l'image prévisualisée on annule l'image et permet d'en choisir une autre 
+    testImage.addEventListener("click", function(){
+      fichier.value = "";
+      prevImage.innerHTML = "";
+      champFichier.classList.remove("inactive-modale");
+      prevImage.classList.add("inactive-modale");
+    });
+
 });
+
+
 /*******************************************************************************/
 
 

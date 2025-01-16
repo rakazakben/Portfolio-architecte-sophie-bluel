@@ -34,6 +34,7 @@
 	flex-direction: column;
 	align-items: center;
 	position: relative;
+	width:100%;
 }
 .ajout-modale{
 	display:flex ;
@@ -213,7 +214,8 @@ select {
 .gallery-modale figure img {
     display: block; /* Supprime l'espace sous l'image */
     width: 100%; /* Ajuste la taille de l'image si nécessaire */
-    height: auto;
+    height: 76px;
+	object-fit: cover;
 }
 .delete-button {
     position: absolute; /* Positionne le bouton par rapport au conteneur */
@@ -424,6 +426,8 @@ a:hover { /*a voir*/
 }
 .gallery img {
 	width: 100%;
+	height:408px;
+	object-fit: cover;
 
 }
 #contact {
