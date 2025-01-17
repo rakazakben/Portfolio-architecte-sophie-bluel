@@ -214,26 +214,26 @@ select {
 .gallery-modale figure img {
     display: block; /* Supprime l'espace sous l'image */
     width: 100%; /* Ajuste la taille de l'image si nécessaire */
-    height: 76px;
+    height: 7em;
 	object-fit: cover;
 }
 .delete-button {
-    position: absolute; /* Positionne le bouton par rapport au conteneur */
-    top: 3px; /* Distance depuis le haut */
-    right: 3px; /* Distance depuis la droite */
-    background-color: black; /* Couleur de fond du bouton */
-    color: white; /* Couleur de l'icône */
-    border: none; /* Pas de bordure */
-    border-radius: 2px; /* Bouton rond */
-    width: 17px; /* Taille du bouton */
-    height: 17px; /* Taille du bouton */
-    display: flex; /* Centrage de l'icône */
+    position: absolute; 
+    top: 3px; 
+    right: 3px; 
+    background-color: black; 
+    color: white; 
+    border: none; 
+    border-radius: 2px; 
+    width: 17px; 
+    height: 17px; 
+    display: flex; 
     justify-content: center;
     align-items: center;
     cursor: pointer;
 }
 .delete-button i {
-    font-size: 9px; /* Ajuste la taille de l'icône */
+    font-size: 9px; 
 }
 
 html, body, div, span, applet, object, iframe,
