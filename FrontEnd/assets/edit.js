@@ -17,13 +17,9 @@ function genererModaleWorks(works){
         
         imageElement.src = work.imageUrl;
         imageElement.alt = work.title;
-        //creation du texte descriptif de l'element
-        //const captionElement = document.createElement("figcaption");
-        //captionElement.innerText = work.title;
         //ajout des elements créés dans le DOM
         divGallery.appendChild(elementGallery);
         elementGallery.appendChild(imageElement);
-        //elementGallery.appendChild(captionElement);
         
     }
 }
