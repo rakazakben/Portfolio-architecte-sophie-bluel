@@ -187,13 +187,12 @@ async function sendProject(image, titre, categorie){
         // Vérifie la réponse
         if (response.ok) {
           const result = await response.json(); // Parse la réponse JSON
-          console.log('Succès :', result);
         } else {
-          console.error('Erreur lors de la requête :', response.status, response.statusText);
+          console.error("Erreur lors de la requête :", response.status, response.statusText);
         }
       } 
       catch (error) {
-        console.error('Erreur réseau ou autre :', error);
+        console.error("Erreur réseau ou autre :", error);
       }
 }
 /********************************************************************************************/

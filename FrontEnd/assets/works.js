@@ -87,9 +87,6 @@ const logout = document.querySelector(".logout");
 logout.addEventListener("click", function(){
     //suppression du token d'authentification
     sessionStorage.removeItem("authToken");
-    //disparition du lien logout et apparition du lien login
-    //statusConnect[0].classList.remove("connected");
-    //statusConnect[1].classList.add("connected");
     //Actualisation de la page pour checker l'absence de token dans le if(tokenTest ==! null)
     window.location.href = "index.html";
 });

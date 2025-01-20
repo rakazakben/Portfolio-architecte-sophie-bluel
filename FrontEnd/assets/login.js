@@ -8,7 +8,6 @@ function connectUser(){
                     email: event.target.querySelector("[name=email]").value,
                     password: event.target.querySelector("[name=password]").value
             };
-            console.log(log);
             const requeteLog = JSON.stringify(log);
             console.log(requeteLog);
             try {
@@ -26,8 +25,6 @@ function connectUser(){
 
                 const data = await reponse.json();
                 sessionStorage.setItem("authToken", data.token);
-                const verifToken = await sessionStorage.getItem("authToken");
-                console.log("token stocké : ",verifToken);
                 window.location.href = "index.html";
             } 
             catch (Error) {
