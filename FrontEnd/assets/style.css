@@ -329,6 +329,9 @@ section {
 	border-radius: 60px;
 	padding: 5px 10px 5px 10px;
 }
+.btn-filtre button:hover{
+	cursor: pointer;
+}
 .btn-filtre .filtre-actif{
 	background-color: #1D6154;
 	color: white;
@@ -494,6 +497,9 @@ input[type="submit"]{
 	width: 180px;
 	text-align: center;
 	border-radius: 60px ;
+}
+input[type="submit"]:hover{
+	cursor: pointer;
 }
 footer{
 	background-color: white;
