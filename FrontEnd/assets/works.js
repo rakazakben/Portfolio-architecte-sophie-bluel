@@ -1,7 +1,7 @@
 import { apiWorks, apiCategory } from "./config.js";
 import { categoryAjoutModale} from "./edit.js";
 
-const stockWorks = await fetch(apiWorks);
+const stockWorks = await fetch(apiWorks); //appel GET sur la route works de l'api
 const works = await stockWorks.json();
 const listeCategories = await fetch(apiCategory);
 const categories = await listeCategories.json();

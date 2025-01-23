@@ -35,6 +35,7 @@ function connectUser(){
             catch (Error) {
                 const messageErreur =document.createElement("p");
                 messageErreur.classList.add("erreur-connect");
+                
                 messageErreur.innerText = "Mauvais mot de passe et/ou email";
                 formLogin.prepend(messageErreur);
             }

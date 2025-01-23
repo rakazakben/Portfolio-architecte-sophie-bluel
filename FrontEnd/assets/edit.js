@@ -133,26 +133,38 @@ const champFichier = document.querySelector(".file-upload-info");
 //lorsque il y a changement dans le champ d'envoie de fichier (lorsque l'utilisateur a selectionné unr image)
 fichier.addEventListener("change", function(){
     //on cache la div des infos d'upload
-    champFichier.classList.add("inactive-modale");
-    //on affiche à la place la div de prévisualisation
-    prevImage.classList.remove("inactive-modale");
-    //on actualise l'affichage de la div
-    prevImage.innerHTML = "";
 
-    //on créé une image avec comme source l'image envoyée par l'utilisateur dans le champs de fichier
-    const testImage = document.createElement("img");
-    testImage.src = window.URL.createObjectURL(fichier.files[0]);
+    if(fichier.files[0]){
+      const maxSize = 4 * 1024 * 1024; // 4 Mo en octets
+        if (fichier.files[0].size > maxSize) {
+            alert("Le fichier dépasse la taille maximale autorisée de 4 Mo.");
+            fichier.value = ""; // Réinitialise l'input
+        } else {
+          champFichier.classList.add("inactive-modale");
+          //on affiche à la place la div de prévisualisation
+          prevImage.classList.remove("inactive-modale");
+          //on actualise l'affichage de la div
+          prevImage.innerHTML = "";
 
-    //on affiche l'image dans la zone de prévisualisation
-    prevImage.appendChild(testImage);
+          //on créé une image avec comme source l'image envoyée par l'utilisateur dans le champs de fichier
+          const testImage = document.createElement("img");
+          testImage.src = window.URL.createObjectURL(fichier.files[0]);
 
-    //lors du clic sur l'image prévisualisée on annule l'image et permet d'en choisir une autre 
-    testImage.addEventListener("click", function(){
-      fichier.value = "";
-      prevImage.innerHTML = "";
-      champFichier.classList.remove("inactive-modale");
-      prevImage.classList.add("inactive-modale");
+          //on affiche l'image dans la zone de prévisualisation
+          prevImage.appendChild(testImage);
+
+          //lors du clic sur l'image prévisualisée on annule l'image et permet d'en choisir une autre 
+          testImage.addEventListener("click", function(){
+          fichier.value = "";
+          prevImage.innerHTML = "";
+          champFichier.classList.remove("inactive-modale");
+          prevImage.classList.add("inactive-modale");
     });
+        
+        }
+
+    }
+    
 
 });
 
@@ -251,6 +263,7 @@ projectForm.addEventListener('submit', async (event) => {
     const image = fichier.files.length > 0; // Fichier sélectionné par l'utilisateur
     const titre = titreInput.value.trim() !== ""; // Titre entré par l'utilisateur
     const categorie = categorieInput.value !== ""; // Catégorie choisie
+    
     if (image && titre && categorie){
       boutonForm.classList.add("active-btn"); //si tous les champs sont remplis on active le bouton d'envoi
 
